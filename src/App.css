@@ -1,0 +1,550 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #f8fafc;
+}
+
+
+/* =========================================================
+   NEWS PAGE
+   ========================================================= */
+
+.news-page {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FIXED HEADER
+   ========================================================= */
+
+.news-page__header {
+  flex: 0 0 auto;
+
+  width: min(100% - 32px, 1000px);
+
+  margin: 0 auto;
+
+  padding: 32px 0 24px;
+}
+
+.news-page__title {
+  margin: 0;
+
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+
+  color: #111827;
+}
+
+
+/* =========================================================
+   SCROLLABLE MIDDLE AREA
+   ========================================================= */
+
+.news-list-wrapper {
+  flex: 1 1 0;
+
+  /*
+   * VERY IMPORTANT.
+   * Without min-height: 0, flex children can prevent
+   * the middle area from becoming scrollable.
+   */
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 0 16px 32px;
+
+  /*
+   * Allows the browser to understand that this is
+   * an independent scrolling region.
+   */
+  overscroll-behavior: contain;
+}
+
+
+/* =========================================================
+   NEWS LIST
+   ========================================================= */
+
+.news-list {
+  width: min(100%, 1000px);
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+
+/* =========================================================
+   NEWS CARD
+   ========================================================= */
+
+.news-card {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 280px 1fr;
+
+  min-height: 220px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06);
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   CARD IMAGE
+   ========================================================= */
+
+.news-card__image-container {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+}
+
+.news-card__image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.news-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f3f4f6;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.news-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 24px;
+}
+
+.news-card__category {
+  margin-bottom: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  color: #6b7280;
+}
+
+.news-card__title {
+  margin: 0 0 12px;
+
+  font-size: 24px;
+
+  line-height: 1.25;
+}
+
+.news-card__description {
+  margin: 0 0 16px;
+
+  color: #6b7280;
+
+  line-height: 1.6;
+}
+
+.news-card__meta {
+  margin: auto 0 16px;
+
+  font-size: 14px;
+
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   FULL CARD NAVIGATION
+   ========================================================= */
+
+.news-card__overlay-link {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  display: block;
+}
+
+.news-card__read-more {
+  position: relative;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  display: inline-block;
+}
+
+
+/* =========================================================
+   FIXED PAGINATION FOOTER
+   ========================================================= */
+
+.pagination {
+  flex: 0 0 auto;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 24px;
+
+  padding: 16px 24px;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  border-top: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 -4px 16px rgba(0, 0, 0, 0.06);
+
+  backdrop-filter: blur(8px);
+
+  /*
+   * IMPORTANT:
+   * Do NOT use position: sticky.
+   * Do NOT use position: fixed.
+   *
+   * Flexbox keeps this footer visible while the
+   * middle section handles scrolling.
+   */
+}
+
+
+/* =========================================================
+   PAGINATION BUTTONS
+   ========================================================= */
+
+.pagination__arrow {
+  flex: 0 0 auto;
+
+  min-width: 100px;
+  height: 40px;
+
+  padding: 0 16px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #111827;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.pagination__arrow:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
+.pagination__arrow:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   PAGINATION SCRUBBER
+   ========================================================= */
+
+.pagination__scrubber {
+  width: min(600px, 50vw);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.pagination__info {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  font-size: 13px;
+
+  color: #4b5563;
+}
+
+.pagination__range {
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   RANGE SLIDER
+   ========================================================= */
+
+.pagination__slider {
+  width: 100%;
+  height: 6px;
+
+  margin: 0;
+
+  appearance: none;
+
+  background: #d1d5db;
+
+  border-radius: 999px;
+
+  cursor: grab;
+}
+
+.pagination__slider:active {
+  cursor: grabbing;
+}
+
+.pagination__slider::-webkit-slider-thumb {
+  appearance: none;
+
+  width: 22px;
+  height: 22px;
+
+  border: 3px solid #ffffff;
+
+  border-radius: 50%;
+
+  background: #111827;
+
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.25);
+
+  cursor: grab;
+}
+
+.pagination__slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+
+  border: 3px solid #ffffff;
+
+  border-radius: 50%;
+
+  background: #111827;
+
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.25);
+
+  cursor: grab;
+}
+
+
+/* =========================================================
+   PAGINATION LABELS
+   ========================================================= */
+
+.pagination__labels {
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 11px;
+
+  color: #9ca3af;
+}
+
+
+/* =========================================================
+   LOADING / ERROR / EMPTY
+   ========================================================= */
+
+.news-state {
+  width: min(100%, 1000px);
+
+  min-height: 240px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 32px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+}
+
+.news-state h2 {
+  margin: 0 0 8px;
+}
+
+.news-state p {
+  margin: 0 0 24px;
+
+  color: #6b7280;
+}
+
+.news-state__button {
+  min-height: 40px;
+
+  padding: 0 18px;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: #111827;
+
+  color: #ffffff;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .news-page__header {
+    width: calc(100% - 24px);
+
+    padding: 24px 0 20px;
+  }
+
+  .news-page__title {
+    font-size: 32px;
+  }
+
+  .news-list-wrapper {
+    padding: 0 12px 24px;
+  }
+
+  .news-list {
+    width: 100%;
+
+    gap: 16px;
+  }
+
+  .news-card {
+    grid-template-columns: 1fr;
+  }
+
+  .news-card__image-container {
+    height: 220px;
+
+    min-height: 0;
+  }
+
+  .news-card__image-placeholder {
+    min-height: 220px;
+  }
+
+  .news-card__title {
+    font-size: 20px;
+  }
+
+  .pagination {
+    gap: 10px;
+
+    padding: 12px;
+  }
+
+  .pagination__arrow {
+    min-width: auto;
+
+    padding: 0 10px;
+
+    font-size: 12px;
+  }
+
+  .pagination__scrubber {
+    width: 100%;
+  }
+
+  .pagination__info {
+    font-size: 12px;
+  }
+}
