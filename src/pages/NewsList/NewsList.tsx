@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getNews } from "../services/newsApi";
-import type { News } from "../types/news";
-import NewsCard from "../components/NewsCard";
-import Pagination from "../components/pagination";
-import { ITEMS_PER_PAGE } from "../constants/pagination";
+import { getNews } from "../../services/newsApi";
+import type { News } from "../../types/news";
+import NewsCard from "../../components/NewsCard/NewsCard";
+import Pagination from "../../components/Pagination/pagination";
+import { ITEMS_PER_PAGE } from "../../constants/pagination";
+import "./NewsList.css";
 
 function NewsList() {
   const [news, setNews] = useState<News[]>([]);
@@ -127,20 +128,14 @@ function NewsList() {
   return (
     <main className="news-page">
 
-      {/* ==================================================
-          FIXED HEADER
-          ================================================== */}
+    {/*  FIXED HEADER */}  
       <header className="news-page__header">
         <h1 className="news-page__title">
           Latest News
         </h1>
       </header>
 
-
-      {/* ==================================================
-          SCROLLABLE MIDDLE SECTION
-          Only this area should scroll.
-          ================================================== */}
+{/*scroll only middle section*/}
       <div className="news-list-wrapper">
         <section
           className="news-list"
@@ -156,9 +151,7 @@ function NewsList() {
       </div>
 
 
-      {/* ==================================================
-          FIXED PAGINATION FOOTER
-          ================================================== */}
+      { /*fixed pafination footer */ }
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

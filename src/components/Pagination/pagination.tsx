@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {ITEMS_PER_PAGE,type PaginationProps,
-} from "../constants/pagination";
+} from "../../constants/pagination";
+import "./pagination.css";
 
 function Pagination({
   currentPage,
@@ -10,15 +11,14 @@ function Pagination({
 }: PaginationProps) {
   const [sliderPage, setSliderPage] = useState(currentPage);
 
-  // Keep slider synchronized when page changes
-  // through Previous / Next or another action.
+// Sync slider with current page]
+
   useEffect(() => {
     setSliderPage(currentPage);
   }, [currentPage]);
 
-  // Update only the slider while dragging.
-  // Do not load news here.
-  const handleSliderChange = (
+  // slider while dragging.
+ const handleSliderChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setSliderPage(Number(event.target.value));

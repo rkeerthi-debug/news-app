@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import type { News } from "../types/news";
+import type { News } from "../../types/news";
+import "./NewsCard.css";
 
 interface NewsCardProps {
   news: News;

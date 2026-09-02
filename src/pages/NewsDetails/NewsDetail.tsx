@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getNewsById } from "../services/newsApi";
-import type { News } from "../types/news";
+import { getNewsById } from "../../services/newsApi";
+import type { News } from "../../types/news";
+import "./NewsDetail.css";
 
 function NewsDetail() {
   const { id } = useParams();
