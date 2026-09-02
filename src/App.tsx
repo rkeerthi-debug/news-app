@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import NewsList from "./pages/NewsList";
-import NewsDetail from "./pages/NewsDetail";
+import NewsList from "./pages/NewsList/NewsList";
+import NewsDetail from "./pages/NewsDetails/NewsDetail";
 
 function App() {
   return (
